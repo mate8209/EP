@@ -255,3 +255,40 @@ h2{font-family:var(--font); font-size:clamp(36px,4.1vw,66px); line-height:.94; l
     height:360px;
   }
 }
+
+/* =========================================================
+   IMÁGENES VERTICALES TIPO CAPTURA MOBILE
+   La imagen entra completa aunque quede más chica
+   ========================================================= */
+
+.visual-card.mobile-shot{
+  width:100%;
+  height:100%;
+  max-height:100%;
+  min-height:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:12px;
+  overflow:hidden;
+
+  background:white;
+  border-radius:26px;
+  border:1px solid var(--line);
+  box-shadow:0 16px 40px rgba(7,59,89,.14);
+}
+
+.visual-card.mobile-shot img{
+  display:block;
+
+  width:auto;
+  height:auto;
+
+  max-width:100%;
+  max-height:100%;
+
+  object-fit:contain !important;
+  object-position:center center;
+}

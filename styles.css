@@ -91,3 +91,167 @@ h2{font-family:var(--font); font-size:clamp(36px,4.1vw,66px); line-height:.94; l
 .matrix-stack b{display:block; font-size:26px; color:var(--navy); margin-bottom:8px;}
 .matrix-stack span{display:block; color:var(--muted); font-size:18px; line-height:1.3;}
 .hint-mini{margin-top:18px; padding:14px 16px; border-radius:16px; background:#e9fffb; color:var(--navy)!important; font-weight:800; font-size:16px!important;}
+
+/* =========================================================
+   CORRECCIÓN FINAL DE ENCUADRE DE IMÁGENES
+   Evita que las imágenes se salgan de la slide
+   ========================================================= */
+
+/* La slide mantiene 16:9 y sus hijos no pueden desbordar */
+.slide{
+  display:none;
+  width:min(calc(100vw - 72px), calc((100vh - 96px) * 16 / 9));
+  aspect-ratio:16/9;
+  max-height:calc(100vh - 96px);
+  overflow:hidden;
+}
+
+/* Toda slide activa conserva su tipo de layout */
+.slide.active{
+  display:block;
+}
+
+.split.active{
+  display:grid;
+}
+
+.image-duo.active{
+  display:grid;
+}
+
+.image-focus.active{
+  display:grid;
+}
+
+.cover.active,
+.section-title.active,
+.final.active,
+.question-card.active{
+  display:flex;
+}
+
+/* Las grillas internas respetan la altura disponible */
+.slide.split,
+.slide.image-duo,
+.slide.image-focus{
+  height:auto;
+  min-height:0;
+}
+
+/* En slides con imagen + texto, limitar altura real de contenido */
+.slide.split.active,
+.slide.image-duo.active,
+.slide.image-focus.active{
+  height:100%;
+  max-height:100%;
+  align-items:stretch;
+}
+
+/* Columnas internas: permiten que el contenido se achique y no empuje afuera */
+.slide.split > div,
+.slide.image-duo > div,
+.slide.image-focus > div,
+.slide.image-focus > aside{
+  min-height:0;
+  max-height:100%;
+  overflow:hidden;
+}
+
+/* Contenedores visuales: toman la altura disponible, no más */
+.visual-card,
+.visual-card.tall,
+.visual-card.wide,
+.image-frame,
+.phone-frame,
+.image-card,
+.image-card.wide{
+  height:100%;
+  max-height:100%;
+  min-height:0;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+
+/* Imágenes: siempre completas, nunca recortadas */
+.visual-card img,
+.image-frame img,
+.phone-frame img,
+.image-card img,
+.portrait img{
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain !important;
+  object-position:center center;
+}
+
+/* Para slides con mucho texto + imagen, ajustar proporción */
+.slide.visual-heavy.split{
+  grid-template-columns:0.92fr 1.08fr;
+  gap:28px;
+}
+
+/* El bloque textual no debe empujar la imagen fuera */
+.slide.visual-heavy h2{
+  font-size:clamp(30px,3.1vw,48px);
+  margin-bottom:20px;
+}
+
+.slide.visual-heavy .chapter{
+  font-size:15px;
+  margin-bottom:14px;
+}
+
+.slide.visual-heavy .matrix-stack{
+  gap:12px;
+  margin-top:18px;
+}
+
+.slide.visual-heavy .matrix-stack article{
+  padding:16px 18px;
+}
+
+.slide.visual-heavy .matrix-stack b{
+  font-size:23px;
+}
+
+.slide.visual-heavy .matrix-stack span{
+  font-size:16px;
+}
+
+.slide.visual-heavy .note{
+  margin-top:14px;
+  font-size:15px;
+  padding:12px 14px;
+}
+
+/* Caso especial: imágenes verticales tipo captura de tweet */
+.slide.visual-heavy .visual-card.tall img,
+.slide.visual-heavy .visual-card.wide img{
+  width:100%;
+  height:100%;
+  object-fit:contain !important;
+}
+
+/* Responsive */
+@media (max-width:1100px){
+  .slide{
+    width:min(calc(100vw - 32px), calc((100vh - 110px) * 16 / 9));
+    max-height:calc(100vh - 110px);
+  }
+
+  .slide.split.active,
+  .slide.image-duo.active,
+  .slide.image-focus.active{
+    grid-template-columns:1fr;
+  }
+
+  .visual-card,
+  .visual-card.tall,
+  .visual-card.wide,
+  .image-frame{
+    height:360px;
+  }
+}

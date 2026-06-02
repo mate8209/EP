@@ -363,3 +363,90 @@ h2{font-family:var(--font); font-size:clamp(36px,4.1vw,66px); line-height:.94; l
   max-height:100%;
   overflow:hidden;
 }
+
+/* =========================================================
+   SLIDES DE CRONOGRAMA / FECHAS IMPORTANTES
+   ========================================================= */
+
+.calendar-slide{
+  background:
+    radial-gradient(circle at 86% 18%, rgba(115,242,232,.16), transparent 28%),
+    var(--paper);
+}
+
+.calendar-slide h2{
+  font-size:clamp(42px,4.6vw,72px);
+  margin-bottom:34px;
+}
+
+.date-list{
+  display:grid;
+  gap:16px;
+  max-width:1120px;
+}
+
+.date-list div{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:20px 24px;
+  box-shadow:0 12px 34px rgba(7,59,89,.08);
+}
+
+.date-list b{
+  display:block;
+  color:var(--navy);
+  font-size:clamp(22px,2vw,32px);
+  margin-bottom:6px;
+  letter-spacing:-.03em;
+}
+
+.date-list span{
+  display:block;
+  color:var(--muted);
+  font-size:clamp(20px,1.75vw,28px);
+  line-height:1.25;
+}
+
+.date-list em{
+  font-style:normal;
+  color:var(--orange);
+  font-weight:800;
+}
+
+.date-list strong{
+  color:var(--navy);
+  font-weight:900;
+}
+
+.highlight-date{
+  border-left:10px solid var(--orange)!important;
+  background:#fff8ec!important;
+}
+
+.grouped-date{
+  border-left:10px solid var(--teal)!important;
+  position:relative;
+}
+
+.grouped-date span + span{
+  margin-top:8px;
+}
+
+.grouped-date small{
+  display:inline-block;
+  margin-top:12px;
+  color:white;
+  background:var(--navy);
+  padding:8px 14px;
+  border-radius:999px;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+
+.foot-note{
+  margin-top:28px;
+  color:#6f6653;
+  font-size:clamp(20px,1.8vw,28px);
+  font-style:italic;
+}

@@ -292,3 +292,14 @@ h2{font-family:var(--font); font-size:clamp(36px,4.1vw,66px); line-height:.94; l
   object-fit:contain !important;
   object-position:center center;
 }
+
+/* La columna de la imagen vertical no debe forzar recorte */
+.slide.visual-heavy.split{
+  align-items:stretch;
+}
+
+.slide.visual-heavy.split > div{
+  min-height:0;
+  max-height:100%;
+  overflow:hidden;
+}
